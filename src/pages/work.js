@@ -1,18 +1,30 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout/index"
 import SEO from "../components/seo"
 import ProjectCard from "../components/projectCard/index"
+import HeroSection from "../components/heroSection/index"
 const AboutPage = () => {
   const data = useStaticQuery(graphql`
-    query SiteProjectsQuery {
+    query SiteProjectsAndHeroQuery {
       site {
-        projectDetails {
-          title
-          description
-          techStack
-          role
+        siteMetadata {
+          projectDetails {
+            title
+            description
+            techStack
+            role
+          }
+          heroSectionData {
+            work {
+              bgImage
+              fgImage
+              title
+              subTitle
+              link
+            }
+          }
         }
       }
     }
@@ -20,7 +32,10 @@ const AboutPage = () => {
   return (
     <Layout>
       <SEO title="Work" />
-      <ProjectCard projects={data.site.projectDetails} />
+      <HeroSection
+        heroSectionData={data.site.siteMetadata.heroSectionData.work}
+      />
+      <ProjectCard projects={data.site.siteMetadata.projectDetails} />
     </Layout>
   )
 }

@@ -7,8 +7,10 @@ import SEO from "../components/seo"
 const AboutPage = () => (
   <Layout>
     <SEO title="Resume" />
-    <h1>Resume</h1>
-    <Link to="/">Go back to the homepage</Link>
+
+    <a href="../resumes/Satyaprakash_Resume.pdf" download>
+      <button>Downlaod the Resume from here</button>
+    </a>
   </Layout>
 )
 
